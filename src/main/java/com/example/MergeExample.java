@@ -10,10 +10,10 @@ public class MergeExample {
     private static Logger log = LoggerFactory.getLogger(ZipExample.class);
 
     public static void main(String[] args) throws InterruptedException {
-        Flowable<String> colors = Flowable.just("red", "green");
-        Flowable<String> timer = Flowable.just("blue", "yellow");
+        Flowable<String> colors1 = Flowable.just("red", "green");
+        Flowable<String> colors2 = Flowable.just("blue", "yellow");
 
-        Flowable<String> periodicEmitter = Flowable.merge(colors, timer);
+        Flowable<String> periodicEmitter = Flowable.merge(colors1, colors2);
 
         periodicEmitter.subscribe(
             val -> log.info("Received: " + val),
