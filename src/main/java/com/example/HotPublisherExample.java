@@ -33,12 +33,12 @@ public class HotPublisherExample {
         }, BackpressureStrategy.BUFFER)
             .publish();
 
-        Flowable<Integer> observable = connectableObservable.refCount();
+        Flowable<Integer> flowable = connectableObservable.refCount();
 
         final CountDownLatch latch = new CountDownLatch(2);
 
         log.info("Subscribing 1st");
-        observable
+        flowable
             .take(5)
             .subscribe(val -> log.info("Subscriber1 received: {}", val),
                 val -> log.info("Subscriber1 error: {}", val.getMessage()),
@@ -51,7 +51,7 @@ public class HotPublisherExample {
 
         log.info("Subscribing 2nd");
         //we're not seeing the code inside .create() re-executed
-        observable
+        flowable
             .take(2)
             .subscribe((val) -> log.info("Subscriber2 received: {}", val),
                 val -> log.info("Subscriber1 error: {}", val.getMessage()),

@@ -16,7 +16,7 @@ public class SchedulerExample {
 
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
 
-        Flowable<Integer> flowable = Flowable.range(5, 10);
+        Flowable<Integer> flowable = Flowable.range(1, 5);
 
         flowable
             .subscribeOn(Schedulers.from(fixedThreadPool))
